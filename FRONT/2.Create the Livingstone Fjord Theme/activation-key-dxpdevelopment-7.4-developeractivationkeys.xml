@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<license>
+	<account-name>DXP Cloud Internal</account-name>
+	<owner>Joel Bourgeois</owner>
+	<description>DXP Cloud Internal Developer Activation Keys</description>
+	<product-name>DXP Development</product-name>
+	<product-version>7.4</product-version>
+	<license-name>Digital Enterprise Development</license-name>
+	<license-type>developer</license-type>
+	<license-version>6</license-version>
+	<start-date>Tuesday, May 10, 2022 4:00:00 PM GMT</start-date>
+	<expiration-date>Friday, June 10, 2022 4:00:00 PM GMT</expiration-date>
+	<max-http-sessions>5</max-http-sessions>
+	<key>31780753d1f736d2c4c44f2c26bfaa102016e58299f7c5e8998c9ca0199ec7409489cf1f81468073b6ebe63970dccc9c342584bf04a029301b143293fb3b10718af092887fc786d97fbec06f41c3327bc545b322ec12e4ecad479827d7bbc8384c41cc0353b642cdf962a0a791850356788e06cc95985836addd9274578e4e02f0e98f8d</key>
+</license>

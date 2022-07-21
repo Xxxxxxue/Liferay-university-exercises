@@ -1,0 +1,102 @@
+{
+	// Web Content Template snippets
+
+	"ftl: 01-div-header-and-body": {
+		"prefix": "lfr-experience-management",
+		"body": [
+			"<div class=\"card-type-asset\">",
+				"\t<div class=\"card-item-first aspect-ratio\">",
+				"\t</div>",
+				"\t<div class=\"card-body\">",
+				"\t</div>"
+			"</div>"
+		],
+		"description": "Add to featured hotels template file"
+	},
+
+	"ftl: 02-hotel-image": {
+		"prefix": "lfr-experience-management",
+		"body": [
+			"<#if Text1.Image1.getData()?? && Text1.Image1.getData() != \"\">",
+				"\t<a href=\"\\${Text1.Image1.getData()}\">",
+					"\t\t<img class=\"aspect-ratio-item-fluid\" \\${languageUtil.format(locale, \"download-x\", \"Image1\", false)} src=\"\\${Text1.Image1.getData()}\">",
+				"\t</a>",
+			"</#if>"
+		],
+		"description": "Add to featured hotels template file"
+	},
+	
+	"ftl: 03-hotel-title-link": {
+		"prefix": "lfr-experience-management",
+		"body": [
+			"<h2 class=\"text-center\">",
+				"\t<a class=\"item-one\" href=\"\\${Text1.Link1.getFriendlyUrl()}\">\\${Text1.getData()}</a>",
+			"</h2>"
+		],
+		"description": "Add to featured hotels template file"
+	},
+	
+	"ftl: 04-top-row-second-column": {
+		"prefix": "lfr-experience-management",
+		"body": [
+			"<li class=\"card col-md-6\">",
+				"\t<div class=\"card-type-asset\">",
+					"\t\t<div class=\"card-item-first aspect-ratio\">",
+						"\t\t\t<#if Text2.Image2.getData()?? && Text2.Image2.getData() != \"\">",
+							"\t\t\t\t<a href=\"\\${Text2.Image2.getData()}\">",
+                            	"\t\t\t\t\t<img class=\"aspect-ratio-item-fluid\" \\${languageUtil.format(locale, \"download-x\", \"Image2\", false)} src=\"\\${Text2.Image2.getData()}\">",
+                        	"\t\t\t\t</a>",
+						"\t\t\t</#if>",
+					"\t\t</div>",
+					"\t\t<div class=\"card-body\">",
+						"\t\t\t<h2 class=\"text-center\">",
+							"\t\t\t\t<a class=\"item-one\" href=\"\\${Text2.Link2.getFriendlyUrl()}\">\\${Text2.getData()}</a>",
+						"\t\t\t</h2>",
+					"\t\t</div>",
+				"\t</div>",
+			"</li>"
+		],
+		"description": "Add to featured hotels template file"
+	},
+	
+	"ftl: 05-second-row": {
+		"prefix": "lfr-experience-management",
+		"body": [
+			"<ul class=\"list-unstyled row\">",
+				"\t<li class=\"card col-md-6\">",
+					"\t\t<div class=\"card-type-asset\">",
+						"\t\t\t<div class=\"card-item-first aspect-ratio\">",
+							"\t\t\t\t<#if Text3.Image3.getData()?? && Text3.Image3.getData() != \"\">",
+								"\t\t\t\t\t<a href=\"\\${Text3.Image3.getData()}\">",
+									"\t\t\t\t\t\t<img class=\"aspect-ratio-item-fluid\" \\${languageUtil.format(locale, \"download-x\", \"Image3\", false)} src=\"\\${Text3.Image3.getData()}\">",
+								"\t\t\t\t\t</a>",
+							"\t\t\t\t</#if>",
+						"\t\t\t</div>",
+						"\t\t\t<div class=\"card-body\">",
+							"\t\t\t\t<h2 class=\"text-center\">",
+								"\t\t\t\t\t<a class=\"item-one\" href=\"\\${Text3.Link3.getFriendlyUrl()}\">\\${Text3.getData()}</a>",
+							"\t\t\t\t</h2>",
+						"\t\t\t</div>",
+					"\t\t</div>",
+				"\t</li>",
+				"\t<li class=\"card col-md-6\">",
+					"\t\t<div class=\"card-type-asset\">",
+						"\t\t\t<div class=\"card-item-first aspect-ratio\">",
+							"\t\t\t\t<#if Text4.Image4.getData()?? && Text4.Image4.getData() != \"\">",
+								"\t\t\t\t\t<a href=\"\\${Text4.Image4.getData()}\">",
+									"\t\t\t\t\t\t<img class=\"aspect-ratio-item-fluid\" \\${languageUtil.format(locale, \"download-x\", \"Image4\", false)} src=\"\\${Text4.Image4.getData()}\">",
+								"\t\t\t\t\t</a>",
+							"\t\t\t\t</#if>",
+						"\t\t\t</div>",
+						"\t\t\t<div class=\"card-body\">",
+							"\t\t\t\t<h2 class=\"text-center\">",
+								"\t\t\t\t\t<a class=\"item-one\" href=\"\\${Text4.Link4.getFriendlyUrl()}\">\\${Text4.getData()}</a>",
+							"\t\t\t\t</h2>",
+						"\t\t\t</div>",
+					"\t\t</div>",
+				"\t</li>",
+			"</ul>"
+		],
+		"description": "Add to featured hotels template file"
+	},
+}

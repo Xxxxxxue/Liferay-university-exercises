@@ -1,0 +1,118 @@
+{
+
+	// Navigation Widget Template
+
+	"ftl: 04-if-no-content-message": {
+		"prefix": "lfr-widget-templates",
+		"body": [
+			"<#if themeDisplay.isSignedIn()>",
+				"\t<div class=\"alert alert-info\">",
+					"\t\t<@liferay.language key=\"there-are-no-menu-items-to-display\" />",
+				"\t</div>",
+			"</#if>"
+		],
+		"description": "Add to vertical-navigation.ftl file"
+	},
+	
+	"ftl: 05-build-navigation-macro": {
+		"prefix": "lfr-widget-templates",
+		"body": [
+			"<#macro buildNavigation navItem>",
+				"\t<#-- Add 06-nav-item-assignments snippet here -->\n",
+
+				"\t<li class=\"nav-item\">",
+					"\t\t<div class=\"d-inline-flex\">",
+						"\t\t\t<a class=\"\\${nav_item_css_class}\" href=\"\\${navItem.getRegularURL()}\">",
+							"\t\t\t\t \\${navItem.getName()}",
+						"\t\t\t</a>\n",
+
+					"\t\t<#-- Add 07-children-menu-if-statement snippet here -->",
+				"\t</li>",
+			"</#macro>"
+		],
+		"description": "Add to vertical-navigation.ftl file"
+	},
+
+	"ftl: 06-nav-item-assignments": {
+		"prefix": "lfr-widget-templates",
+		"body": [
+			"<#assign",
+				"\tnav_item_css_class = \"nav-link\"",
+			"/>\n",
+
+			"<#if navItem.isSelected()>",
+				"\t<#assign",
+					"\t\tnav_item_css_class = \"\\${nav_item_css_class} active\"",
+				"\t/>",
+			"</#if>"
+		],
+		"description": "Add to vertical-navigation.ftl file"
+	},
+	
+	"ftl: 07-children-menu-if-statement": {
+		"prefix": "lfr-widget-templates",
+		"body": [
+			"<#if navItem.hasBrowsableChildren()>",
+				"\t<#assign randomNamespace = portalUtil.generateRandomKey(request, \"expandCollapse\") />",
+					"\t\t<a aria-controls=\"\\${randomNamespace}\" aria-expanded=\"true\" class=\"collapse-icon nav-link\" data-toggle=\"collapse\" href=\"#\\${randomNamespace}\" role=\"button\">",
+						"\t\t\t<#-- Add 8-opt-clay-symbol-macros snippet or type here -->",
+					"\t\t</a>",
+				"\t</div>\n",
+
+				"\t<div class=\"collapse\" id=\"\\${randomNamespace}\">",
+					"\t\t<ul class=\"nav nav-stacked\">",
+						"\t\t\t<#-- Add 09-opt-nav-children-macro snippet or type here -->",
+					"\t\t</ul>",
+				"\t</div>",
+			"<#else>",
+				"\t</div>",
+			"</#if>"
+		],
+		"description": "Add to vertical-navigation.ftl file"
+	},
+	
+	"ftl: 08-opt-clay-symbol-macros": {
+		"prefix": "lfr-widget-templates",
+		"body": [
+			"<span class=\"collapse-icon-open\">",
+				"\t<@clay.icon symbol=\"caret-bottom\" />",
+			"</span>"
+			"<span class=\"collapse-icon-closed\">",
+				"\t<@clay.icon symbol=\"caret-right\" />",
+			"</span>",
+		],
+		"description": "Add to vertical-navigation.ftl file"
+	},
+
+	"ftl: 09-opt-nav-children-macro": {
+		"prefix": "lfr-widget-templates",
+		"body": [
+			"<#list navItem.getBrowsableChildren() as navItemChild>",
+				"\t<@buildNavigation navItem=navItemChild />",
+			"</#list>"
+		],
+		"description": "Add to vertical-navigation.ftl file"
+	},
+
+	"ftl: 10-nav-menu-using-macro": {
+		"prefix": "lfr-widget-templates",
+		"body": [
+			"<nav class=\"menubar menubar-transparent menubar-vertical-expand-md\">",
+				"\t<a aria-controls=\"navigationWDTExample\" aria-expanded=\"false\" class=\"menubar-toggler\" data-toggle=\"collapse\" href=\"#navigationWDTExample\" role=\"button\">",
+					"\t\t\\${themeDisplay.getLayout().getNameCurrentValue()}\n",
+		
+					"\t\t<@clay.icon symbol=\"caret-bottom\" />",
+				"\t</a>\n",
+		
+				"\t<div class=\"collapse menubar-collapse\" id=\"navigationWDTExample\">",
+					"\t\t<ul class=\"nav nav-nested\">",
+						"\t\t\t<#list entries as navItem>",
+							"\t\t\t\t<@buildNavigation navItem=navItem />",
+						"\t\t\t</#list>",
+					"\t\t</ul>",
+				"\t</div>",
+			"</nav>"
+		],
+		"description": "Add to vertical-navigation.ftl file"
+	}
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 7.4.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_7_4_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>7.4.0+</version>
+	</compatibility>
+	<theme id="livingstone-fjord-theme" name="Livingstone Fjord Theme">
+		<template-extension>ftl</template-extension>
+		<settings>
+			<setting configurable="false" key="color-palette" value="primary,success,danger,warning,info,dark,gray-dark,secondary,light,lighter,white" />
+			<setting configurable="true" key="show-footer" type="checkbox" value="true" />
+			<setting configurable="true" key="show-header" type="checkbox" value="true" />
+			<setting configurable="true" key="show-main-navigation-in-full-screen" type="checkbox" value="false" />
+			<setting configurable="false" key="show-site-name-default" value="true" />
+			<setting configurable="false" key="show-site-name-supported" value="true" />
+			<setting configurable="true" key="use-a-retina-logo" type="checkbox" value="true" />
+			<!-- Insert snippet 02-theme-settings here -->
+		</settings>
+		<!-- Insert snippet 01-portlet-decorators here -->
+	</theme>
+</look-and-feel>

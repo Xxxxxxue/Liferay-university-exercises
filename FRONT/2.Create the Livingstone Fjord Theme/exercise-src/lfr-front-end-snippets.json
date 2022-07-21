@@ -1,0 +1,547 @@
+{
+
+	//templates snippets
+
+	"ftl: 01-portal-normal-header": {
+		"prefix": "lfr-front-end",
+		"body": [
+			"<#if show_header>",
+				"\t<#include \"\\${full_templates_path}/header.ftl\" />",
+			"</#if>",
+		],
+		"description": "Add to portal_normal.ftl file"
+	},
+
+	"ftl: 02-portal-normal-main": {
+		"prefix": "lfr-front-end",
+		"body": [
+			"<main id=\"content\" role=\"main\">",
+				"\t<h1 class=\"hide-accessible\">\\${the_title}</h1>\n",
+
+				"\t<#if selectable>",
+					"\t\t<@liferay_util[\"include\"] page=content_include />",
+				"\t<#else>",
+					"\t\t\\${portletDisplay.recycle()}\n",
+
+					"\t\t\\${portletDisplay.setTitle(the_title)}\n",
+
+					"\t\t<@liferay_theme[\"wrap-portlet\"] page=\"portlet.ftl\">",
+						"\t\t\t<@liferay_util[\"include\"] page=content_include />",
+					"\t\t</@>",
+				"\t</#if>",
+			"</main>\n",
+
+			"<#-- Type footer.ftl include here -->"
+		],
+		"description": "Add to portal_normal.ftl file"
+	},
+
+	"ftl: 03-footer-ftl": {
+		"prefix": "lfr-front-end",
+		"body": [
+			"<footer class=\"bg-dark footer py-5 text-white-50\">",
+				"\t<div class=\"container\">",
+					"\t\t<div class=\"row\">",
+						"\t\t\t<div class=\"align-items-center col-12 d-flex flex-col flex-md-row\">",
+							"\t\t\t\t<img alt=\"\\${logo_description}\" height=\"\\${company_logo_height}\" src=\"\\${site_logo}\" width=\"\\${company_logo_width}\" />\n",
+
+							"\t\t\t\t<#if has_navigation>",
+								"\t\t\t\t\t<div class=\"ml-0 ml-md-3 mt-3 mt-md-0\">",
+								"\t\t\t\t\t\t<#include \"\\${full_templates_path}/footer_navigation.ftl\" />",
+								"\t\t\t\t\t</div>",
+							"\t\t\t\t</#if>\n",
+
+							"\t\t\t\t<#-- Insert 07-social-portal-normal here -->",
+						"\t\t\t</div>\n",
+
+						"\t\t\t<div class=\"border-secondary border-top col-12 mt-5 pt-5\">",
+							"\t\t\t\t<p class=\"mb-0 small text-center text-md-left\">",
+								"\t\t\t\t\t<@liferay.language key=\"powered-by\" /> <a href=\"https://www.liferay.com/services/training\" rel=\"external\" target=\"_blank\">Livingstone Hotels & Resorts</a>",
+							"\t\t\t\t</p>",
+						"\t\t\t</div>",
+					"\t\t</div>",
+				"\t</div>",
+			"</footer>"
+		],
+		"description": "Add to footer.ftl file"
+	},
+
+	"ftl: 04-footer-nav-sign-in": {
+		"prefix": "lfr-front-end",
+		"body": [
+			"<#if !is_signed_in>",
+				"\t<li class=\"nav-item\" role=\"presentation\">",
+					"\t\t<a class=\"nav-link\" data-redirect=\"\\${is_login_redirect_required?string}\" href=\"\\${sign_in_url}\" id=\"sign-in\" rel=\"nofollow\">",
+						"\t\t\t\\${sign_in_text}",
+					"\t\t</a>",
+				"\t</li>",
+			"</#if>"
+		],
+		"description": "Add to footer_navigation.ftl file"
+	},
+
+	"ftl: 05-footer-nav-menu": {
+		"prefix": "lfr-front-end",
+		"body": [
+			"<#foreach nav_item in nav_items>",
+				"\t<li class=\"nav-item\" role=\"presentation\">",
+					"\t\t<a class=\"nav-link\" aria-labelledby=\"layout_\\${nav_item.getLayoutId()}\" href=\"\\${nav_item.getURL()}\" \\${nav_item.getTarget()} role=\"menuitem\">",
+						"\t\t\t\\${nav_item.getName()}",
+					"\t\t</a>",
+				"\t</li>",
+			"</#foreach>"
+		],
+		"description": "Add to footer_navigation.ftl file"
+	},
+
+	// css snippets
+
+	"01-custom-clay-variables": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+			"\\$body-bg: white;",
+			"\\$bright-color: #1865FB;",
+			"\\$complementary-color: #869CAD;",
+			"\\$dark-color: #242529;",
+			"\\$light-color: #E7E7ED;",
+			"\\$solid-color: #47647A;\n",
+
+			"\\$portlet-decorate-bg: #FFF;",
+			"\\$portlet-decorate-border: 1px solid \\$light-color;"
+		],
+		"description": "Add to _clay_variables file."
+	},
+
+	"02-colors-scss": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+			"\\$fjord-primary: #5657A1;",
+			"\\$fjord-info: #7BC6DC;",
+			"\\$fjord-secondary: #BDCADB;",
+			"\\$fjord-success: #57D192;"
+		],
+		"description": "Add to _colors file."
+	},
+
+	"03-variables-scss": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+			"@import \"variables/colors\";"
+		],
+		"description": "Add to _variables.scss file."
+	},
+
+	"04-portlet-variables-custom-scss": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+			"\\$portlet-header-margin-bottom: map-get(\\$spacers, 5);\n",
+
+			"\\$portlet-topper-bg: #F1F5FF;",
+			"\\$portlet-topper-border: #D7E5FF;",
+			"\\$portlet-topper-color: map-get(\\$theme-colors, primary);",
+			"\\$portlet-topper-link-color: map-get(\\$theme-colors, primary);",
+			"\\$portlet-topper-link-hover-color: map-get(\\$theme-colors, primary);\n",
+
+			"\\$portlet-content-border-radius: 0 0 8px 8px;",
+			"\\$portlet-topper-border-radius: 4px 4px 0 0;"
+		],
+		"description": "Add to _variables_custom.scss file."
+	},
+
+	"05-buttons-scss": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+			".fjord-btn-primary {",
+				"\t@include button-variant(\\$fjord-primary, \\$fjord-primary);",
+			"}"
+		],
+		"description": "Add to _buttons.scss file."
+	},
+
+	"06-footer-scss": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+			".footer {",
+				"\ta {",
+					"\t\tcolor: inherit;\n",
+
+					"\t\t&:hover,",
+					"\t\t&:focus {",
+						"\t\t\tcolor: white;",
+					"\t\t}",
+				"\t}\n",
+
+				"\t// Insert snippet 10-social-media-footer-scss here",
+			"}"
+		],
+		"description": "Add to _footer.scss file."
+	},
+
+	"07-custom-scss-imports": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+			"@import \"partials/variables\";\n",
+
+			"@import \"partials/backgrounds\";",
+			"@import \"partials/buttons\";",
+			"@import \"partials/footer\";",
+			"@import \"partials/header\";",
+			"@import \"partials/texts\";\n",
+
+			"@import \"portlet/portlet_decorator\";"
+		],
+		"description": "Add to _custom.scss file."
+	},
+
+	// javascript snippets
+
+	"01-variables-and-sign-in": {
+		"prefix": "lfr-front-end",
+		"scope": "javascript",
+		"body": [
+			"var BODY = A.getBody();\n",
+
+			"var signIn = A.one('#sign-in');\n",
+
+			"if (signIn && signIn.getData('redirect') !== 'true') {",
+				"\tsignIn.plug(Liferay.SignInModal);",
+			"}\n",
+
+			"var fullScreenToggleIcon = A.one('.full-screen-navigation #banner .navbar-toggler');"
+		],
+		"description": "Add to main.js file."
+	},
+
+	"02-close-nav-click": {
+		"prefix": "lfr-front-end",
+		"scope": "javascript",
+		"body": [
+			"if (fullScreenToggleIcon) {",
+				"\tfullScreenToggleIcon.on(",
+					"\t\t'click',",
+					"\t\tfunction(event) {",
+						"\t\t\tBODY.toggleClass('main-nav-opened', event.currentTarget.hasClass('collapsed'));",
+					"\t\t}",
+				"\t);",
+			"}"
+		],
+		"description": "Add to main.js file."
+	},
+
+	// WEB-INF snippets
+
+	"01-portlet-decorators": {
+		"prefix": "lfr-front-end",
+		"scope": "xml",
+		"body": [
+			"<portlet-decorator id=\"barebone\" name=\"Barebone\">",
+				"\t<portlet-decorator-css-class>portlet-barebone</portlet-decorator-css-class>",
+			"</portlet-decorator>",
+			"<portlet-decorator id=\"borderless\" name=\"Borderless\">",
+				"\t<portlet-decorator-css-class>portlet-borderless</portlet-decorator-css-class>",
+			"</portlet-decorator>",
+			"<portlet-decorator id=\"decorate\" name=\"Decorate\">",
+				"\t<default-portlet-decorator>true</default-portlet-decorator>",
+				"\t<portlet-decorator-css-class>portlet-decorate</portlet-decorator-css-class>",
+			"</portlet-decorator>",
+			"<portlet-decorator id=\"solid\" name=\"Solid\">",
+				"\t<portlet-decorator-css-class>portlet-solid</portlet-decorator-css-class>",
+			"</portlet-decorator>"
+		],
+		"description": "Add to liferay-look-and-feel.xml file"
+	},
+
+	"09-portlet-decorator-scss": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+			".portlet-decorate {",
+				"\t.portlet {",
+					"\t\tmargin-bottom: 0;",
+				"\t}\n",
+
+				"\t.portlet-content {",
+					"\t\tborder-width: 0;",
+					"\t\tpadding: 0;",
+				"\t}",
+			"}\n",
+
+			".portlet-solid .portlet-content {",
+				"\tbackground: #FFF;",
+				"\tborder: 1px solid #DEEEEE;",
+			"}\n",
+
+			".portlet-barebone .portlet-content {",
+				"\tpadding: 0;",
+			"}"
+		],
+		"description": "Add to _portlet_decorator.scss file."
+	},
+
+	"02-theme-settings": {
+		"prefix": "lfr-front-end",
+		"scope": "xml",
+		"body": [
+			"<setting configurable=\"true\" key=\"facebook-icon\" type=\"checkbox\" value=\"true\" />",
+			"<setting configurable=\"true\" key=\"facebook-icon-link-url\" value=\"http://www.facebook.com\" />",
+			"<setting configurable=\"true\" key=\"twitter-icon\" type=\"checkbox\" value=\"true\" />",
+			"<setting configurable=\"true\" key=\"twitter-icon-link-url\" value=\"http://www.twitter.com\" />"
+		],
+		"description": "Add to liferay-look-and-feel.xml file"
+	},
+
+	"ftl: 06-init-custom-settings": {
+		"prefix": "lfr-front-end",
+		"body": [
+			"facebook_icon = getterUtil.getBoolean(themeDisplay.getThemeSetting(\"facebook-icon\"))",
+			"facebook_icon_link_url = themeDisplay.getThemeSetting(\"facebook-icon-link-url\")",
+			"twitter_icon = getterUtil.getBoolean(themeDisplay.getThemeSetting(\"twitter-icon\"))",
+			"twitter_icon_link_url = themeDisplay.getThemeSetting(\"twitter-icon-link-url\")"
+		],
+		"description": "Add to init_custom ftl file"
+	},
+
+	"ftl: 07-social-portal-normal": {
+		"prefix": "lfr-front-end",
+		"body": [
+			"<div class=\"ml-md-auto mt-3 mt-md-0\">",
+				"\t<#include \"\\${full_templates_path}/social_media.ftl\" />",
+			"</div>"
+		],
+		"description": "Add to portal_normal file"
+	},
+
+	"ftl: 08-social-media-footer": {
+		"prefix": "lfr-front-end",
+		"body": [
+		"<#if facebook_icon || twitter_icon>",
+			"\t<ul class=\"list-inline mb-0\">",
+				"\t\t<#if facebook_icon>",
+					"\t\t\t<li class=\"list-inline-item\">",
+						"\t\t\t\t<a class=\"bg-white bg-white-10 d-block fjord-social fjord-text-primary rounded-circle text-center text-decoration-none text-primary\" href=\"\\${facebook_icon_link_url}\" rel=\"external\" target=\"_blank\" title=\"Go to our Facebook (in new window)\">",
+							"\t\t\t\t\t<span class=\"icon-facebook\"></span>",
+						"\t\t\t\t</a>",
+					"\t\t\t</li>",
+				"\t\t</#if>",
+
+				"\t\t<#if twitter_icon>",
+					"\t\t\t<li class=\"list-inline-item\">",
+						"\t\t\t\t<a class=\"bg-white bg-white-10 d-block fjord-social fjord-text-info rounded-circle text-center text-decoration-none text-info\" href=\"\\${twitter_icon_link_url}\" rel=\"external\" target=\"_blank\" title=\"Go to our Twitter (in new window)\">",
+							"\t\t\t\t\t<span class=\"icon-twitter\"></span>",
+						"\t\t\t\t</a>",
+					"\t\t\t</li>",
+				"\t\t</#if>",
+			"\t</ul>",
+		"</#if>"
+		],
+		"description": "Add to social_media ftl file"
+	},
+
+	"10-social-media-footer-scss": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+			".fjord-social {",
+				"\t@include size(64px);",
+				"\tline-height: 64px;\n",
+
+				"\t&:hover,",
+				"\t&:focus {",
+					"\t\tcolor: white !important;",
+				"\t}",
+			"}"
+		],
+		"description": "Add to _footer scss file"
+	},
+
+	// Stylebook Snippets
+
+	"11-custom-properties-variables": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+		"\\$custom-properties-spacers: ();",
+		"\\$custom-properties-spacers: map-merge(",
+		                "\t\t\t\t(",
+		                        "\t\t\t\t\t0: var(--spacer-0),",
+		                        "\t\t\t\t\t1: var(--spacer-1),",
+		                        "\t\t\t\t\t2: var(--spacer-2),",
+		                        "\t\t\t\t\t3: var(--spacer-3),",
+		                        "\t\t\t\t\t4: var(--spacer-4),",
+		                        "\t\t\t\t\t5: var(--spacer-5),",
+		                        "\t\t\t\t\t6: var(--spacer-6),",
+		                        "\t\t\t\t\t7: var(--spacer-7),",
+		                        "\t\t\t\t\t8: var(--spacer-8),",
+		                        "\t\t\t\t\t9: var(--spacer-9),",
+		                        "\t\t\t\t\t10: var(--spacer-10),",
+		                "\t\t\t\t),",
+		                "\t\t\t\t\\$custom-properties-spacers",
+		");\n",
+
+		":root {",
+		  "\t// Colors",
+		  "\t--black: #{\\$black};",
+		  "\t--gray-100: #{\\$gray-100};",
+		  "\t--gray-200: #{\\$gray-200};",
+		  "\t--gray-300: #{\\$gray-300};",
+		  "\t--gray-400: #{\\$gray-400};",
+		  "\t--gray-500: #{\\$gray-500};",
+		  "\t--gray-600: #{\\$gray-600};",
+		  "\t--gray-700: #{\\$gray-700};",
+		  "\t--gray-800: #{\\$gray-800};",
+		  "\t--gray-900: #{\\$gray-900};",
+		  "\t--transparent: transparent;",
+		  "\t--white: #{\\$white};",
+		  "\t@each \\$key, \\$value in \\$theme-colors {",
+		    "\t\t--#{\\$key}: #{\\$value};",
+		  "\t}\n",
+
+		  "\t// Fonts",
+		  "\t--font-family-base: #{\\$font-family-base};",
+		  "\t--font-family-monospace: #{\\$font-family-monospace};",
+		  "\t--font-family-sans-serif: #{\\$font-family-sans-serif};",
+		  "\t--font-size-base: #{\\$font-size-base};",
+		  "\t--font-size-lg: #{\\$font-size-lg};",
+		  "\t--font-size-sm: #{\\$font-size-sm};",
+		  "\t--font-weight-bold: #{\\$font-weight-bold};",
+		  "\t--font-weight-bolder: #{\\$font-weight-bolder};",
+		  "\t--font-weight-light: #{\\$font-weight-light};",
+		  "\t--font-weight-lighter: #{\\$font-weight-lighter};",
+		  "\t--font-weight-normal: #{\\$font-weight-normal};",
+		  "\t--font-weight-semi-bold: #{\\$font-weight-semi-bold};\n",
+
+		  "\t// Headings",
+		  "\t--h1-font-size: #{\\$h1-font-size};",
+		  "\t--h2-font-size: #{\\$h2-font-size};",
+		  "\t--h3-font-size: #{\\$h3-font-size};",
+		  "\t--h4-font-size: #{\\$h4-font-size};",
+		  "\t--h5-font-size: #{\\$h5-font-size};",
+		  "\t--h6-font-size: #{\\$h6-font-size};\n",
+
+		  "\t// Spacers",
+		  "\t--spacer: #{\\$spacer};",
+		  "\t@each \\$key, \\$value in \\$spacers {",
+		    "\t\t\\$multiplier: nth(\\$value, 1) / \\$spacer;",
+		    "\t\t@if (\\$value == 0) {",
+		      "\t\t\t\\$multiplier: 0;",
+		    "\t\t}",
+		    "\t\t--spacer-#{\\$key}: calc(var(--spacer) * #{\\$multiplier});",
+		  "\t}",
+		"}"
+		],
+		"description": "Add to _custom_properties_variables.scss file"
+	},
+
+	"12-custom-properties-set": {
+		"prefix": "lfr-front-end",
+		"scope": "scss",
+		"body": [
+		"// Headers",
+		"h1,",
+		".h1 {",
+		  "\tfont-size: var(--h1-font-size);",
+		"}",
+		"h2,",
+		".h2 {",
+		  "\tfont-size: var(--h2-font-size);",
+		"}",
+		"h3,",
+		".h3 {",
+		  "\tfont-size: var(--h3-font-size);",
+		"}",
+		"h4,",
+		".h4 {",
+		  "\tfont-size: var(--h4-font-size);",
+		"}",
+		"h5,",
+		".h5 {",
+		  "\tfont-size: var(--h5-font-size);",
+		"}",
+		"h6,",
+		".h6 {",
+		  "\tfont-size: var(--h6-font-size);",
+		"}\n",
+
+		"// Spacers",
+		"@each \\$breakpoint in map-keys(\\$grid-breakpoints) {",
+		  "\t\\$infix: breakpoint-infix(\\$breakpoint, \\$grid-breakpoints);",
+		  "\t@include media-breakpoint-up(\\$breakpoint) {",
+		    "\t\t@each \\$size, \\$length in \\$custom-properties-spacers {",
+		      "\t\t\t@each \\$library in ('bs', 'clay') {"
+		        "\t\t\t\t\\$important: '';",
+		        "\t\t\t\t\\$prefix: '';",
+		        "\t\t\t\t@if (\\$library == 'bs') {",
+		          "\t\t\t\t\t\\$important: '!important';",
+		        "\t\t\t\t} @else {",
+		          "\t\t\t\t\t\\$prefix: 'c-';",
+		        "\t\t\t\t}",
+		        "\t\t\t\t@each \\$prop, \\$abbrev in (margin: m, padding: p) {",
+		          "\t\t\t\t\t\\$variants: ('positive');",
+		          "\t\t\t\t\t@if (\\$prop == 'margin') {",
+		            "\t\t\t\t\t\t\\$variants: ('positive', 'negative');",
+		          "\t\t\t\t\t}",
+		          "\t\t\t\t\t@each \\$variant in \\$variants {",
+		            "\t\t\t\t\t\t\\$variation: '';",
+		            "\t\t\t\t\t\t\\$value: \\$length;",
+		            "\t\t\t\t\t\t@if (\\$variant != 'negative' or \\$size != 0) {",
+		              "\t\t\t\t\t\t\t@if (\\$variant == 'negative') {",
+		                "\t\t\t\t\t\t\t\t\\$value: calc(#{\\$length} * -1);",
+		                "\t\t\t\t\t\t\t\t\\$variation: 'n';",
+		              "\t\t\t\t\t\t\t}",
+		              "\t\t\t\t\t\t\t.#{\\$prefix}#{\\$abbrev}#{\\$infix}-#{\\$variation}#{\\$size} {",
+		                "\t\t\t\t\t\t\t\t#{\\$prop}: #{\\$value} #{\\$important};",
+		              "\t\t\t\t\t\t\t}",
+		              "\t\t\t\t\t\t\t.#{\\$prefix}#{\\$abbrev}t#{\\$infix}-#{\\$variation}#{\\$size},",
+		              "\t\t\t\t\t\t\t.#{\\$prefix}#{\\$abbrev}y#{\\$infix}-#{\\$variation}#{\\$size} {",
+		                "\t\t\t\t\t\t\t\t#{\\$prop}-top: #{\\$value} #{\\$important};",
+		              "\t\t\t\t\t\t\t}",
+		              "\t\t\t\t\t\t\t.#{\\$prefix}#{\\$abbrev}r#{\\$infix}-#{\\$variation}#{\\$size},",
+		              "\t\t\t\t\t\t\t.#{\\$prefix}#{\\$abbrev}x#{\\$infix}-#{\\$variation}#{\\$size} {",
+		                "\t\t\t\t\t\t\t\t#{\\$prop}-right: #{\\$value} #{\\$important};",
+		              "\t\t\t\t\t\t\t}",
+		              "\t\t\t\t\t\t\t.#{\\$prefix}#{\\$abbrev}b#{\\$infix}-#{\\$variation}#{\\$size},",
+		              "\t\t\t\t\t\t\t.#{\\$prefix}#{\\$abbrev}y#{\\$infix}-#{\\$variation}#{\\$size} {",
+		                "\t\t\t\t\t\t\t\t#{\\$prop}-bottom: #{\\$value} #{\\$important};",
+		              "\t\t\t\t\t\t\t}",
+		              "\t\t\t\t\t\t\t.#{\\$prefix}#{\\$abbrev}l#{\\$infix}-#{\\$variation}#{\\$size},",
+		              "\t\t\t\t\t\t\t.#{\\$prefix}#{\\$abbrev}x#{\\$infix}-#{\\$variation}#{\\$size} {",
+		                "\t\t\t\t\t\t\t\t#{\\$prop}-left: #{\\$value} #{\\$important};",
+		              "\t\t\t\t\t\t\t}",
+		            "\t\t\t\t\t\t}",
+		          "\t\t\t\t\t}",
+		        "\t\t\t\t}",
+		      "\t\t\t}",
+		    "\t\t}",
+		  "\t}",
+		"}\n",
+
+		"// Text format",
+		".font-weight-bold {",
+		  "\tfont-weight: var(--font-weight-bold) !important;",
+		"}",
+		".font-weight-bolder {",
+		  "\tfont-weight: var(--font-weight-bolder) !important;",
+		"}",
+		".font-weight-light {",
+		  "\tfont-weight: var(--font-weight-light) !important;",
+		"}",
+		".font-weight-lighter {",
+		  "\tfont-weight: var(--font-weight-lighter) !important;",
+		"}",
+		".font-weight-normal {",
+		  "\tfont-weight: var(--font-weight-normal) !important;",
+		"}",
+		".font-weight-semi-bold {",
+		  "\tfont-weight: var(--font-weight-semi-bold) !important;",
+		"}"
+		],
+		"description": "Add to _custom_properties_set file"
+	},
+}

@@ -1,0 +1,63 @@
+{
+	
+	// Fragment snippets
+	
+	"06-beginning-image-div": {
+		"prefix": "lfr-page-fragments",
+		"scope": "html",
+		"body": [
+			"<div class=\"jumbotron main-background-image\" style=\"background-image: url(https://images.pexels.com/photos/9537/sea-beach-sand-sun.jpg);\">",
+			"</div>"
+		],
+		"description": "Add to Main Banner Index.html file"
+	},
+
+	"07-add-container-left-column": {
+		"prefix": "lfr-page-fragments",
+		"scope": "html",
+		"body": [
+			"<section class=\"container-fluid container-fluid-max-xl\">",
+				"\t<div class=\"col-md-6 mr-auto text-left\">",
+				"\t</div>",
+			"</section>"
+		],
+		"description": "Add to Main Banner Index.html file"
+	},
+	
+	"08-banner-heading": {
+		"prefix": "lfr-page-fragments",
+		"scope": "html",
+		"body": [
+			"<h1 class=\"display-4\">Livingstone Hotels & Resorts</h1>"
+		],
+		"description": "Add to Main Banner HTML file"
+	},
+
+	"09-banner-lead-text": {
+		"prefix": "lfr-page-fragments",
+		"scope": "html",
+		"body": [
+			"<p class=\"lead\">",
+				"\tGet ready for the journey of a lifetime. It's time to <strong>go anywhere</strong>.",
+			"</p>"
+		],
+		"description": "Add to Main Banner HTML file"
+	},
+
+	"10-banner-buttons": {
+		"prefix": "lfr-page-fragments",
+		"scope": "html",
+		"body": [
+			"<div class=\"btn-group\">",
+				"\t<div class=\"btn-group-item\">",
+					"\t\t<a class=\"btn btn-default btn-theme-default btn-xl\" href=\"#\">Discover</a>",
+				"\t</div>\n",
+
+				"\t<div class=\"btn-group-item\">",
+					"\t\t<a class=\"btn btn-primary btn-theme-primary btn-xl\" href=\"#\">Book Now</a>",
+				"\t</div>",
+			"</div>"
+		],
+		"description": "Add to Main Banner HTML file"
+	}
+}
